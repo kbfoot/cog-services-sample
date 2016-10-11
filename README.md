@@ -1,1 +1,0 @@
-# cog-services-sample
