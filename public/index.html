@@ -10,6 +10,7 @@
 <body>
     <!--tagging Images, send an image and return a json file if successful-->
 <script type="text/javascript">
+
     $(function() {
         var params = {
             // Request parameters
@@ -20,17 +21,25 @@
             beforeSend: function(xhrObj){
                 // Request headers
                 xhrObj.setRequestHeader("Content-Type","application/json");
-                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","{subscription key}");
+                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","1509752abed946fe8d21cc1d998286d5");
             },
             type: "POST",
             // Request body
-            data: "{body}",
+            data : JSON.stringify({data : param}),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+
+        
         })
         .done(function(data) {
             alert("success");
+            $('#alertMessage').html('Successfully price group created.').addClass('alert alert-success fade in');
+
         })
         .fail(function() {
             alert("error");
+            $('#alertMessage').html(res.message).addClass('alert alert-danger fade in');
+
         });
     });
 </script>

@@ -21,7 +21,8 @@
             },
             type: "POST",
             // Request body
-            data: "{body}",
+            data: "test.html",
+            var analysisResult = await visionClient.GetTagsAsync("http://stuffpoint.com/cats/image/339454-cats-beautiful-cat.jpg");
         })
         .done(function(data) {
             alert("success");
