@@ -1,5 +1,5 @@
 {
-  "name": "dealwithit",
+  "name": "intelligentapp",
   "version": "1.0.0",
   "description": "",
   "main": "index.html",
@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
-  "author": "rachel weil",
+  "author": "Kelsey Huebner",
   "license": "ISC",
   "dependencies": {
     "express": "3.4.8",
