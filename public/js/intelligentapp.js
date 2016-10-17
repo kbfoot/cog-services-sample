@@ -1,6 +1,8 @@
 $('#imgURL').change(function () {
 
  var imgURL = document.getElementById("imgURL").value;
+       var imgDisplay = document.getElementById("imageinput");
+       imgDisplay.src = imgURL;
     $.ajax({
      
         url: "https://api.projectoxford.ai/vision/v1.0/tag",        
@@ -10,7 +12,6 @@ $('#imgURL').change(function () {
             },
             type: "POST",
             data: "{'url':'" + imgURL+ "'}",
-      
             })
             
             .done(function (data) {
@@ -25,6 +26,8 @@ $('#imgURL').change(function () {
                     $("#response").append("#" + msg.name + " ");
       
                 }
+  
+                
           
             })
 
