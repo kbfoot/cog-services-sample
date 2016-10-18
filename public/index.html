@@ -5,15 +5,16 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
-    
+    <div id="topBar"></div>
     <div id="container">
-        <img src="https://oxfordportal.blob.core.windows.net/emotion/recognition1.jpg" id="imageinput">
+        <img src="https://cdn117.picsart.com/213689042000202.jpg" id="imageinput">
+          <p id="response"></p>   
+           <input type="url" placeholder="Paste a valid image URL" id="imgURL">
+           <p>Supported image formats: JPEG, PNG, GIF, BMP.<br>
+Image file size: Less than 4MB.<br>
+Image dimension: Greater than 50 x 50 pixels.</p>
     </div>
-    <input type="url" id="imgURL">
-    <div id="response"></div>   
-
-    
-
+  
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
           <script type="text/javascript" src="js/intelligentapp.js"></script>

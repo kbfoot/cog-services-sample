@@ -1,8 +1,9 @@
 $('#imgURL').change(function () {
-
+    //  $("response").value("");
  var imgURL = document.getElementById("imgURL").value;
        var imgDisplay = document.getElementById("imageinput");
        imgDisplay.src = imgURL;
+
     $.ajax({
      
         url: "https://api.projectoxford.ai/vision/v1.0/tag",        
@@ -18,8 +19,9 @@ $('#imgURL').change(function () {
                 var dataString = JSON.stringify(data);
                 var msgs = JSON.parse(dataString);
                 var msgTag = msgs.tags;
-                var msgLen = msgTag.length;
-
+                var msgLen = msgTag.length; 
+                var txtTags = document.getElementById("response").text;
+          
                 for(var i = 0, l = msgLen; i < l; i++) {
                     var msg = msgTag[i];
               
@@ -27,7 +29,9 @@ $('#imgURL').change(function () {
       
                 }
   
-                
+        //picsart images to test:
+       // https://cdn117.picsart.com/213689042000202.jpg?r1024x1024
+       //https://cdn111.picsart.com/214373619002202.jpg?r1024x1024        
           
             })
 
