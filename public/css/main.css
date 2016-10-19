@@ -46,3 +46,15 @@ a {
     color: black;
     font-family: 'Segoe UI', 'Verdana', sans-serif;
 }
+
+
+
+#btmBar {
+    background-color: white;
+    color: lightgrey;
+}
+
+#btmBar a {
+    text-decoration: none;
+      color: lightgrey;
+}
