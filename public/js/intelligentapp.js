@@ -1,6 +1,6 @@
-$('#imgURL').change(function () {
+function tagImage() {
     //  $("response").value("");
- var imgURL = document.getElementById("imgURL").value;
+    var imgURL = document.getElementById("imgURL").value;
        var imgDisplay = document.getElementById("imageinput");
        imgDisplay.src = imgURL;
 
@@ -21,13 +21,16 @@ $('#imgURL').change(function () {
                 var msgTag = msgs.tags;
                 var msgLen = msgTag.length; 
                 var txtTags = document.getElementById("response").text;
-          
+                var interText = [];
                 for(var i = 0, l = msgLen; i < l; i++) {
                     var msg = msgTag[i];
-              
-                    $("#response").append("#" + msg.name + " ");
+                    interText.push(" #" +msg.name);
+        
+                   // interText.append("#" + msg.name + " ");
       
                 }
+
+                document.getElementById("response").innerHTML = interText;
   
         //picsart images to test:
        // https://cdn117.picsart.com/213689042000202.jpg?r1024x1024
@@ -40,7 +43,11 @@ $('#imgURL').change(function () {
                 alert(error.getAllResponseHeaders());
 
             })
-        });    
+        };  
+
+        $('#btnTag').click(function () {
+
+        });
 
 
         
