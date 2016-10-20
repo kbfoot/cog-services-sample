@@ -33,8 +33,6 @@ img#imageinput {
     margin:auto;
     position:relative;
     text-align: center;
-    
-
 }
 
 p {
@@ -47,14 +45,11 @@ a {
     font-family: 'Segoe UI', 'Verdana', sans-serif;
 }
 
-
-
 #btmBar {
     background-color: white;
     color: lightgrey;
 }
 
 #btmBar a {
-    text-decoration: none;
-      color: lightgrey;
+    color: lightgrey;
 }
