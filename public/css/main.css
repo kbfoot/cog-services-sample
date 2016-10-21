@@ -21,6 +21,20 @@ body {
     margin: auto;
     text-align:center;
     position: relative;
+    }
+    
+p {
+    font-family: 'Segoe UI', 'Verdana', sans-serif;
+}
+
+a {
+    text-decoration: underline;
+    color: black;
+    font-family: 'Segoe UI', 'Verdana', sans-serif;
+}
+
+li {
+    list-style: none;
 }
 
 img#imageinput {
@@ -33,23 +47,4 @@ img#imageinput {
     margin:auto;
     position:relative;
     text-align: center;
-}
-
-p {
-    font-family: 'Segoe UI', 'Verdana', sans-serif;
-}
-
-a {
-    text-decoration: underline;
-    color: black;
-    font-family: 'Segoe UI', 'Verdana', sans-serif;
-}
-
-#btmBar {
-    background-color: white;
-    color: lightgrey;
-}
-
-#btmBar a {
-    color: lightgrey;
 }
