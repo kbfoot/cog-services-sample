@@ -4,12 +4,12 @@ function tagImage() {
     var imgDisplay = document.getElementById("imageinput");
     imgDisplay.src = imgURL;
 
-    var params = {
+    var paramsDesc = {
     // Request parameters
-    "visualFeatures": "Tags, Description"
+    "visualFeatures": "Tags,Description,Color,ImageType"
         };
     $.ajax({
-            url: "https://api.projectoxford.ai/vision/v1.0/analyze?" + $.param(params),      
+            url: "https://api.projectoxford.ai/vision/v1.0/analyze?" + $.param(paramsDesc),      
             beforeSend: function (xhrObj) {
             xhrObj.setRequestHeader("Content-Type", "application/json");
             xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", "1509752abed946fe8d21cc1d998286d5");
@@ -25,6 +25,8 @@ function tagImage() {
                 var msgDesc = msgs.description.captions[0].text;
                 var msgLen = msgTag.length; 
                 var tagArray = [];
+                var color = msgs.color;
+                var imageType =msgs.imageType;
                 
                 for(var i = 0, l = msgLen; i < l; i++) {
                     var msg = msgTag[i];
@@ -82,7 +84,7 @@ $.ajax({
 
                 //check if female or male to get pronoun
                 var pronoun;
-                (gender = "female") ? pronoun = "She" :   pronoun = "He";
+                (gender == "female") ? pronoun = "She" :   pronoun = "He";
             
                 //if smile is >.5 then say 'is smiling' 
                 var isSmiling;
@@ -91,7 +93,7 @@ $.ajax({
                 //what kind of glasses are they wearing
                 var glassesType;
 
-                (glasses = "NoGlasses") ? glassesType = " not wearing glasses" : glassesType = " wearing sunglasses";
+                (glasses == "NoGlasses") ? glassesType = " not wearing glasses" : (glasses =="Sunglasses") ? glassesType = " wearing sunglasses" : glassTypes = "wearing glasses";
 
                 facesArray.push("There is a " + gender + glassesType +  ". " + pronoun + " looks " + age + " and is " + isSmiling + ".");
                 }
