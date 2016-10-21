@@ -101,7 +101,7 @@ $.ajax({
 
            //Example: There are length people in this picture. There is a woman/male wearing sunglasses/nothing. 'He'/'She' is age and is smiling/notsmiling.
                 //apply the tags to the response div
-                document.getElementById("response").innerHTML = "Image contains at least one person with" + glasses + smile + gender + age;
+            //    document.getElementById("description").innerHTML = "Image contains at least one person with" + glasses + smile + gender + age;
   
         //images to test:
     // https://cdn111.picsart.com/214586577002202.jpg
