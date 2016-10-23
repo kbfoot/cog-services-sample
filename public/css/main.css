@@ -48,3 +48,13 @@ img#imageinput {
     position:relative;
     text-align: center;
 }
+
+.colorBlock {
+    width: 15px;
+    height: 15px;
+    margin: auto;
+    text-align: center;
+    background: black;
+    position: relative;
+    border: 1px solid black;
+}

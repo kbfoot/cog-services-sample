@@ -23,32 +23,28 @@ function tagImage() {
                 var msgs = JSON.parse(dataString);
                 var msgTag = msgs.tags;
                 var msgDesc = msgs.description.captions[0].text;
-                var msgLen = msgTag.length; 
                 var tagArray = [];
                 var color = msgs.color;
                 var imageType =msgs.imageType;
                 
-                for(var i = 0, l = msgLen; i < l; i++) {
+                for(var i = 0, l = msgs.length; i < l; i++) {
                     var msg = msgTag[i];
                     tagArray.push(" #" +msg.name);      
                 }
-                //apply Description to the div, commenting out for now
-              //  document.getElementById("description").innerHTML = msgDesc;
-
                 //apply the tags to the response div
-                document.getElementById("response").innerHTML = tagArray;
-  
-        //images to test:
-       // https://cdn117.picsart.com/213689042000202.jpg?r1024x1024
-       //https://cdn111.picsart.com/214373619002202.jpg?r1024x1024        
-          
+                document.getElementById("response").innerHTML = tagArray;      
+                document.getElementById("dominantColor").setAttribute("style", "background:" + color.dominantColorForeground);
+                document.getElementById("bgColor").setAttribute("style", "background:" + color.dominantColorBackground);
+                document.getElementById("accentColor").setAttribute("style", "background:" + color.accentColor);
             })
+
+         
 
             .fail(function (error) {
                 $("#response").text("Please provide a valid Image URL");
             })
 
-             var paramsFace = {
+            var paramsFace = {
             // Request parameters
             "returnFaceId": "true",
             "returnFaceAttributes": "age,gender,headPose,smile,facialHair,glasses"
@@ -81,37 +77,37 @@ $.ajax({
                 var smile = face.smile;
                 var gender = face.gender;
                 var age = face.age;
-
+                var facialHair = face.facialHair
                 //check if female or male to get pronoun
                 var pronoun;
                 (gender == "female") ? pronoun = "She" :   pronoun = "He";
             
                 //if smile is >.5 then say 'is smiling' 
                 var isSmiling;
-                (smile > .5) ? isSmiling = "happy" : (smile <.5 && smile >.02) ? isSmiling ="meh" : isSmiling = "not happy" ;
+                (smile > .5) ? isSmiling = "is smiling" : (smile <.5 && smile >.02) ? isSmiling ="neutral" : isSmiling = "not smiling" ;
 
                 //what kind of glasses are they wearing
                 var glassesType;
 
                 (glasses == "NoGlasses") ? glassesType = " not wearing glasses" : (glasses =="Sunglasses") ? glassesType = " wearing sunglasses" : glassTypes = "wearing glasses";
 
-                facesArray.push("There is a " + gender + glassesType +  ". " + pronoun + " looks " + age + " and is " + isSmiling + ".");
+
+                //does this person have facial hair?
+                var facialHairArray= [];
+                if (facialHair.beard > .5) {
+                    facialHairArray.push(" with a beard");
+                }
+                if (facialHair.moustache > .5) {
+                    facialHairArray.push(" with a moustache");
+                }
+                if (facialHair.sideburns > .5) {
+                    facialHairArray.push(" with sideburns");
+                }
+
+                facesArray.push("There is a " + gender + glassesType + facialHairArray +  ". " + pronoun + " looks " + age + " and is " + isSmiling + ".");
                 }
                 document.getElementById("description").innerHTML = facesArray;
                 }
-                
-
-           //Example: There are length people in this picture. There is a woman/male wearing sunglasses/nothing. 'He'/'She' is age and is smiling/notsmiling.
-                //apply the tags to the response div
-            //    document.getElementById("description").innerHTML = "Image contains at least one person with" + glasses + smile + gender + age;
-  
-        //images to test:
-    // https://cdn111.picsart.com/214586577002202.jpg
-      // https://cdn111.picsart.com/213738630003202.jpg  
-      //https://cdn116.picsart.com/214506343001202.jpg  
-      //https://cdn113.picsart.com/214670821003202.jpg
-      //https://cdn114.picsart.com/214662062001202.jpg
-      //
           
             })
 
@@ -121,6 +117,15 @@ $.ajax({
         };  
 
     
+    // images to test:
+    // https://cdn111.picsart.com/214586577002202.jpg
+    // https://cdn111.picsart.com/213738630003202.jpg  
+    // https://cdn116.picsart.com/214506343001202.jpg  
+    // https://cdn113.picsart.com/214670821003202.jpg
+    // https://cdn114.picsart.com/214662062001202.jpg
+    // https://cdn111.picsart.com/214294150001202.jpg
+    // https://cdn129.picsart.com/213046190007201.jpg
+
 
 
         
