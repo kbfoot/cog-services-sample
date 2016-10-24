@@ -10,9 +10,15 @@
         <img src="https://cdn113.picsart.com/214670821003202.jpg" id="imageinput" class="img-rounded"> 
         <p id="description">There is a female wearing sunglasses. She looks 24.1 and is not smiling.</p>
           <p id="response">#sky, #person, #outdoor, #scene</p>
-         Dominant color: <div class="colorBlock" id="dominantColor" style="background:black;"></div>
-         Background color: <div class="colorBlock" id="bgColor" style="background:blue;"></div>
-         Accent color: <div class="colorBlock" id="accentColor" style="background:white;"></div>
+        <div>
+            <div style="display: inline-block;">Dominant color:</div> <div class="colorBlock" id="dominantColor" style="background:black; display:inline-block;"></div>
+        </div>
+        <div> 
+            <div style="display: inline-block;">Background color:</div> <div class="colorBlock" id="bgColor" style="background:blue;display:inline-block;"></div>
+        </div>
+        <div> 
+            <div style="display: inline-block;">Accent color:</div> <div class="colorBlock" id="accentColor" style="background:white;display:inline-block;"></div>
+        </div>
            <input type="url" placeholder="Paste a valid image URL" id="imgURL">
            <button class="btnTag btn-default btn-sm" onclick="tagImage()">Tag Image</button>
            <p>Supported image formats: JPEG, PNG, GIF, BMP.<br>
