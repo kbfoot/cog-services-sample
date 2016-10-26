@@ -27,7 +27,7 @@ function tagImage() {
                 var color = msgs.color;
                 var imageType =msgs.imageType;
                 
-                for(var i = 0, l = msgs.length; i < l; i++) {
+                for(var i = 0, l = msgTag.length; i < l; i++) {
                     var msg = msgTag[i];
                     tagArray.push(" #" +msg.name);      
                 }
@@ -37,8 +37,6 @@ function tagImage() {
                 document.getElementById("bgColor").setAttribute("style", "background:" + color.dominantColorBackground);
                 document.getElementById("accentColor").setAttribute("style", "background:" + color.accentColor);
             })
-
-         
 
             .fail(function (error) {
                 $("#response").text("Please provide a valid Image URL");
