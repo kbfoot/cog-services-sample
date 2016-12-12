@@ -4,8 +4,44 @@ function tagImage() {
     var imgDisplay = document.getElementById("imageinput");
     imgDisplay.src = imgURL;
 
+    
+        var paramsEmot = {
+            // Request parameters for Emotion API
+           // ex "scores": "disgust"
+        };
+
+      
+        $.ajax({
+              url: "https://api.projectoxford.ai/emotion/v1.0/recognize",
+            beforeSend: function(xhrObj){
+                // Request headers
+                xhrObj.setRequestHeader("Content-Type","application/json");
+                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","835c52aa7e434a7f817a93fe7b440b4d");
+            },
+            type: "POST",
+            // Request body
+         data: "{'url': '" + imgURL+ "' }"
+   
+        })
+        .done(function(data) {
+                var dataString = JSON.stringify(data);
+                var faces = JSON.parse(dataString); 
+
+                for(var i = 0, l = faces.length; i < l; i++) {
+                    //get the scores for each face
+                   var scores = faces[i].scores;
+                   var highestEmotion = getHighestEmotion(scores);
+                   //this should be a way to push each emotion for each face.
+               //     document.getElementById("emotion").innerHTML = faces[i].scores.happiness;      
+             }
+        })
+        .fail(function(e) {
+            $("#description").text("Please provide a valid Image URL");
+        });
+
+
     var paramsDesc = {
-    // Request parameters
+    // Request parameters for Computer Vision API
     "visualFeatures": "Tags,Description,Color,ImageType"
         };
     $.ajax({
@@ -41,9 +77,9 @@ function tagImage() {
             .fail(function (error) {
                 $("#response").text("Please provide a valid Image URL");
             })
-
+//end computervision API
             var paramsFace = {
-            // Request parameters
+            // Request parameters for Face API
             "returnFaceId": "true",
             "returnFaceAttributes": "age,gender,headPose,smile,facialHair,glasses"
       }
@@ -80,7 +116,7 @@ $.ajax({
                 var pronoun;
                 (gender == "female") ? pronoun = "She" :   pronoun = "He";
             
-                //if smile is >.5 then say 'is smiling' 
+                //check for smile, not currently using due to emotion addition
                 var isSmiling;
                 (smile > .5) ? isSmiling = "is smiling" : (smile <.5 && smile >.02) ? isSmiling ="neutral" : isSmiling = "not smiling" ;
 
@@ -102,7 +138,7 @@ $.ajax({
                     facialHairArray.push(" with sideburns");
                 }
 
-                facesArray.push("There is a " + gender + glassesType + facialHairArray +  ". " + pronoun + " looks " + age + " and is " + isSmiling + ".");
+                facesArray.push("There is a " + age + " " + gender + glassesType + facialHairArray +  ". ");
                 }
                 document.getElementById("description").innerHTML = facesArray;
                 }
@@ -114,6 +150,9 @@ $.ajax({
             })
         };  
 
+        //end faceapi
+
+  
     
     // images to test:
     // https://cdn111.picsart.com/214586577002202.jpg
